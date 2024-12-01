@@ -9,7 +9,7 @@ def main():
     # input
     print(os.getcwd())
     day = "01"
-    year = "204"
+    year = "2024"
     input_file = f"./inputs/day{day}.txt"
     # print(input_file)
     part1, part2 = 0, 0
