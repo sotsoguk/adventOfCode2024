@@ -11,7 +11,7 @@ def main():
     day = "01"
     year = "204"
     input_file = f"./inputs/day{day}.txt"
-    print(input_file)
+    # print(input_file)
     part1, part2 = 0, 0
     leftList, rightList = [], []
 
