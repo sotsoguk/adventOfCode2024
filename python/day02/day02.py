@@ -12,8 +12,16 @@ def safe(level):
     ) or (all([y >= 1 for y in firstDiff]) and all([y <= 3 for y in firstDiff]))
 
 
-def safe2(level, s=0):
-    return any(safe(level[:i] + level[i + 1 :]) for i in range(len(level)))
+def safe2(level):
+    for i in range(len(level) - 1):
+        if not (1 <= level[i + 1] - level[i] <= 3):
+            return any(
+                (
+                    safe(level[:i] + level[i + 1 :]),
+                    safe(level[: i + 1] + level[i + 2 :]),
+                )
+            )
+    return True
 
 
 def main():
@@ -42,10 +50,10 @@ def main():
     safeList1 = list(map(safe, levels))
     part1 = sum(safeList1)
     # only process unsafe lists in part2
-    unsafeList1 = list(compress(levels, [not elem for elem in safeList1])) 
+    unsafeList1 = list(compress(levels, [not elem for elem in safeList1]))
 
     # part2
-    p2list = list(map(safe2, unsafeList1))
+    p2list = list(map(lambda l: any((safe2(l), safe2(l[::-1]))), unsafeList1))
     part2 = sum(p2list) + part1
 
     # output
